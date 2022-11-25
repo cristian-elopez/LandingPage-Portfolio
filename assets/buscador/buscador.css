@@ -1,0 +1,112 @@
+:root {
+    --backgrond: #2E2C2F;
+    --tranq-background: #535253;
+    --tranq-yellow: #E4A70E;
+    --heav-yellow: #a17810;
+    --text-white: #ffffff;
+    --text-gray: #d5dadf;
+
+    --green: #1f9254;
+    --red: #a30d11;
+}
+
+/* ENCABEZADO */
+
+.buscador {
+    width: 80%;
+}
+
+.buscador-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#buscador-form {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.buscador-input-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-direction: row;
+
+    margin: auto;
+    padding: 9px 16px;
+    width: 230px;
+    height: 35px;
+    background-color: var(--tranq-background);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.buscador-input-container img {
+    filter: invert();
+}
+
+.buscador-input {
+    color: var(--text-white);
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.buscador-input::placeholder {
+    color: var(--text-white);
+}
+
+.botones {
+    color: var(--text-white);
+    background: transparent;
+    border-radius: 10px;
+    height: 35px;
+    padding: 0 20px;
+    cursor: pointer;
+    border: 1px solid var(--text-white);
+}
+
+.botones:hover {
+    transform: scale(1.01);
+    border: 1px solid var(--tranq-yellow);
+    color: var(--tranq-yellow);
+}
+
+/* INFORMACION DE LAS MONEDAS */
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    min-width: 400px;
+    width: 100%;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+
+.show {
+    visibility: visible;
+}
+  
+.hidden {
+    visibility: hidden;
+}
+
+.up {
+    color: var(--green);
+}
+
+.down {
+    color: var(--red);
+}
+
+/* MEDIAQUERIS */
+
+@media (max-width:425px) {
+    .buscador {
+        display: none;
+    }
+}

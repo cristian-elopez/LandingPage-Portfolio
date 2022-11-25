@@ -1,0 +1,384 @@
+/* ALL */
+
+:root {
+    --tranq-yellow: #E4A70E;
+    --heav-yellow: #a17810;
+    --text-white: #ffffff;
+    --text-gray: #d5dadf;
+    --backgrond: #2E2C2F;
+    --tranq-background: #535253;
+}
+
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;
+}
+body {
+    background-image: radial-gradient( circle 610px at 5.2% 51.6%,  #050872 0%, #070335 97.5% );
+
+    color: var(--text-white);
+    text-align: center;
+}
+a,
+li {
+    color: var(--text-white);
+    text-decoration: none;
+    list-style: none;
+}
+a:hover {
+    color: var(--tranq-yellow);
+}
+
+/* HEADER */
+
+header {
+    margin: auto;
+    padding: 5px 30px;
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: linear-gradient(0deg, #070335 0%,#050872 97.5%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.navbar {
+    margin: auto;
+    width: 80%;
+    justify-content: end;
+    gap: 20px;
+}
+.navbar-links {
+    width: 50%;
+    justify-content: space-around;
+}
+.navbar-links li:first-child {
+    font-weight: 700;
+}
+
+.overlay {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1; /*Para que quede por encima del resto de las cosas*/
+  
+    /*Efecto de Glassmorphismo*/
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: none;
+}
+  
+  /*Toggle para el overlay (para que funcione unicamente cuando abrimos carrito o menu hamburguesa.
+    Aclarar que funciona porque son elementos hermanos y overlay esta debajo de los dos inputs en el código.*/
+.show-overlay {
+    display: flex;
+}
+
+/* FAVORITOS */
+
+.favoritos {
+    z-index: 5;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+
+    width: 500px;
+    min-height: 200px;
+    top: 100px;
+    right: 70px;
+    background-color: #070335;
+    border-radius: 10px;
+}
+
+.show-favoritos {
+    display: flex;
+}
+
+.favoritos .divider {
+    width: 80%;
+    background-color: var(--text-gray);
+    height: 1px;
+    margin: 20px auto;
+}
+
+.favoritos .btn-delete{
+    margin-bottom: 20px;
+}
+
+.fav-item {
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid var(--text-white);
+    border-radius: 10px;
+}
+
+.fav-item div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fav-item div > h3 {
+    width: 70%;
+}
+
+.fav-item img {
+    width: 30%;
+}
+/* modal */
+
+.add-modal {
+    padding: 15px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-white);
+    background-color: var(--tranq-background);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    transition: all 0.5s ease-out;
+    text-align: center;
+    transform: translateY(200%);
+}
+  
+.active-modal {
+    transform: translateY(0);
+    transition: all 0.5s ease-in;
+}
+
+/* USUARIOS */
+
+.users {
+    z-index: 5;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+    top: 100px;
+    right: 70px;
+    background-color: #070335;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.form-users label {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-users label > input {
+    margin: 5px auto;
+    padding: 9px 16px;
+    width: 230px;
+    height: 35px;
+    border: none;
+    color: var(--text-white);
+    background-color: var(--tranq-background);
+    border-radius: 10px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.form-users label > input::placeholder {
+    color: var(--text-white);
+}
+
+.show-users {
+    display: flex;
+}
+
+/* menu */
+
+.btn-menu-responsive {
+    display: none;
+}
+
+/* BOTONES */
+
+.botones {
+    color: var(--text-white);
+    background: transparent;
+    border-radius: 10px;
+    height: 35px;
+    padding: 0 20px;
+    cursor: pointer;
+    border: 1px solid var(--text-white);
+}
+
+.botones:hover {
+    transform: scale(1.01);
+    border: 1px solid var(--tranq-yellow);
+    color: var(--tranq-yellow);
+}
+
+/* SECTIONS */
+
+.section-container {
+    width: 95%;
+    max-width: 1500px;
+    margin: 40px auto;
+}
+
+.home-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.titulos-container {
+    width: 45%;
+    text-align: left;
+}
+
+.titulos-container h1 {
+    font-size: 3em;
+}
+
+/* NOSOTROS */
+
+.nosotros {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 100px;
+}
+
+.nosotros-preguntas {
+    width: 30%;
+    text-align: right;
+}
+
+.nosotros-info {
+    width: 40%;
+    text-align: left;
+}
+
+.nosotros-info h3 > img {
+    filter: invert();
+}
+
+#globo-dialogo {
+    width: 25px;
+}
+#anotador {
+    width: 18px;
+}
+#peligro {
+    width: 20px;
+}
+
+/* FOOTER */
+
+footer {
+    color: var(--c-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer a,
+footer p {
+    color: var(--text-gray);
+    font-weight: 300;
+    font-size: 14px;
+}
+
+footer span {
+    font-weight: 800;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+}
+
+/* MEDIAQUERIS */
+
+@media (max-width: 768px) {
+    header {
+        width: 100%;
+    }
+    .navbar {
+        width: 100%;
+    }
+    .navbar-links {
+        display: none;
+    }
+    .icons-navbar-container {
+        width: 30%;
+        display: flex;
+    }
+    .btn-menu-responsive {
+        display: flex;
+    }
+    .home-section {
+        width: 100%;
+    }
+    .img-presentacion-container, 
+    .img-presentacion-container img {
+        display: none;
+    }
+    .titulos-container {
+        width: 100%;
+        margin-left: 30px;
+    }
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nosotros {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .nosotros-preguntas {
+        width: 80%;
+    }
+    .nosotros-info {
+        width: 80%;
+    }
+}
+@media (max-width:425px) {
+    .navbar {
+        justify-content: center;
+    }    
+    .favoritos {
+        width: 90%;
+        left: 0;
+        border-radius: 0;
+    }
+}
+@media (max-width:320px) {
+    header {
+        padding-left: 5px;
+    }    
+}

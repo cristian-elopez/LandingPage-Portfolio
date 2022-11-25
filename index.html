@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/icons/coinnews_logo.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./assets/images.css">
+    <link rel="stylesheet" href="./assets/buscador/buscador.css">
+    <link rel="stylesheet" href="./assets/filtro/filtro.css">
+    <link rel="stylesheet" href="./assets/carrusel/carrusel.css">
+    <title>CoinNews</title>
+</head>
+<body>
+    <header>
+        <img src="./assets/img/coinnews.png" alt="Logo CoinNews">
+        <div class="navbar flex-container">
+            <ul class="navbar-links flex-container">
+                <li><a href="#home-section">Inicio</a></li>
+                <li><a href="#lista-cryptos">Cryptomonedas</a></li>
+                <li><a href="#noticias">Noticias</a></li>
+                <li><a href="#conocenos">Conócenos</a></li>
+            </ul>
+            <div class="icons-navbar-container">
+                <img class="icons-navbar btn-favs" src="./assets/icons/libro-alt.svg" alt="Favoritos">
+                <img class="icons-navbar btn-users" src="./assets/icons/usuario.svg" alt="Login/Register">
+                <img class="icons-navbar btn-menu-responsive" src="./assets/icons/bars-solid.svg" alt="Icono de menu">
+            </div>
+        </div>
+        <div class="favoritos">
+            <h2>Tus noticias</h2>
+            <div class="fav-container"></div>
+            <span class="divider"></span>
+            <button class="botones btn-delete">Vaciar favoritos</button>
+        </div>
+        <div class="users">
+            <form class="form-users">
+                <label for="usuario">Usuario
+                    <input type="text" placeholder="Introduce un usuario">
+                </label>
+                <label for="contraseña">Contraseña
+                    <input type="password" placeholder="Introduce una contraseña">
+                </label>
+            </form>
+            <button class="botones" id="login">Iniciar Sesión</button>
+            <button class="botones" id="register">Registrarse</button>
+        </div>
+        <div class="overlay"></div>
+    </header>
+
+    <section class="section-container home-section" id="home-section">
+        <!-- titulo y presentacion -->
+        <div class="titulos-container">
+            <h1>Enterate al instante de todas las noticias crypto y del mercado</h1>
+            <h3>Las criptomonedas y sus derivados son productos financieros innovadores con gran volatilidad y altos riesgos de inversión.</h3>
+        </div>
+        <div class="img-presentacion-container">
+            <img src="./assets/img/coins-background.jpg"> 
+        </div>
+    </section>
+
+    <section class="section-container">
+        <!-- carrusel de noticias de crypto y mercado -->
+
+        <div class="carrusel">
+            <div class="carrusel-big">
+                    <img src="./assets/img/info-crypto-coins.jpg" alt="Cryptos confiables">
+                    <img src="./assets/img/noticia_s&p_500_anual.jpg" alt="Noticia s&p 500">
+                    <img src="./assets/img/siguenos.jpg" alt="">
+            </div>
+            <ul class="points">
+                <li class="point point-active"></li>
+                <li class="point"></li>
+                <li class="point"></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section-container buscador" id="lista-cryptos">
+        <!-- buscador de cryptomonedas -->
+
+        <div class="buscador-container">
+            <form id="buscador-form" name="formulario">
+              <div class="buscador-input-container">
+                <img src="./assets/icons/busqueda.svg" alt="lupa">
+                <input type="text" placeholder="Introduce la moneda" class="buscador-input"/>
+              </div>
+              <button type="submit" class="botones buscador-btn">Buscar</button>
+            </form>
+            <button class="botones top-btn hidden">Ver populares</button>
+        </div>
+        <div class="cryptos-table">
+            <table class="styled-table">
+                <thead>
+                  <tr>
+                    <th>Ranking</th>
+                    <th>Cryptomoneda</th>
+                    <th>Último precio</th>
+                    <th>Cap. de Mercado</th>
+                    <th>Cambio en 24hs</th>
+                  </tr>
+                </thead>
+                <tbody class="tbody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section-container noticias" id="noticias">
+        <!-- filtra por clases las noticias -->
+
+        <h2>Noticias</h2>
+        <div class="categories">
+            <button id="todas-btn" class="category active">Todas</button>
+            <button id="cryptos-btn" class="category" data-category="cryptos">Cryptos</button>
+            <button id="mercado-btn" class="category" data-category="mercado">Mercado</button>
+            <button id="brokers-btn" class="category" data-category="brokers">Brokers</button>
+        </div>
+
+        <div class="news-container"></div>
+    </section>
+
+    <section class="section-container nosotros">
+        <!-- informacion sobre nosotros -->
+
+        <div class="nosotros-preguntas">
+            <h2>¿Por qué CoinNews?</h2>
+            <h3>Porque somos tu sitio de noticias de criptomonedas y mercado de confianza.</h3>            
+        </div>
+        <div class="nosotros-info" id="conocenos">
+            <h3> 
+                <img src="./assets/icons/comments-regular.svg" alt="globo de dialogo" id="globo-dialogo"> 
+                Preguntas frecuentes
+            </h3>
+            <p>Consulta las preguntas frecuentes para obtener instrucciones precisas sobre funciones específicas.</p>
+            <h3>
+                <img src="./assets/icons/clipboard-regular.svg" alt="anotador" id="anotador">
+                Blog
+            </h3>
+            <p>Mantente al día de las últimas historias y reportajes.</p>
+            <h3>
+                <img src="./assets/icons/triangle-exclamation-solid.svg" alt="peligro" id="peligro">
+                Advertencia de riesgo
+            </h3>
+            <p>Considera cuidadosamente y ejerce un juicio claro para evaluar tu situación financiera y los riesgos para tomar cualquier decisión para operar sobre el mercado y las cryptomonedas, ya que serás responsable de todas las pérdidas que surjan de ello.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            <ul class="footer-links">
+              <li><a href="#">Términos de Uso</a></li>
+              <li><a href="#">Trabajá con Nosotros</a></li>
+              <li><a href="#">Soporte</a></li>
+            </ul>
+          </div>
+          <p>By <span>Cristian Lopez</span></p>
+    </footer>
+
+    <div class="add-modal"></div>
+    
+    <script src="index.js"></script>
+    <script src="./assets/buscador/buscador.js"></script>
+    <script src="./assets/carrusel/carrusel.js"></script>
+    <script src="./assets/filtro/filtro.js"></script>
+</body>
+</html>

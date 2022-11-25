@@ -1,0 +1,29 @@
+/* NAVBAR */
+
+header img {
+    width: 120px;
+}
+
+.icons-navbar {
+    width: 20px;
+    filter: invert();
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.icons-navbar:hover {
+    filter: invert(59%) sepia(96%) saturate(1288%) hue-rotate(8deg) brightness(104%) contrast(89%);
+}
+
+/* PRESENTACION */
+
+.img-presentacion-container {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-presentacion-container img {
+    width: 100%;
+}
