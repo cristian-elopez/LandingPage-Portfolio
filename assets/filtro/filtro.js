@@ -31,6 +31,7 @@ const genericFetch = async ( url ) => {
   return data.articles;
 };
 
+
 const newsContainer = document.querySelector('.news-container');
 const todosBtn = document.getElementById('todas-btn');
 const cryptosBtn = document.getElementById('cryptos-btn');
@@ -43,8 +44,15 @@ const successModal = document.querySelector(".add-modal");
 const btnDelete = document.querySelector(".btn-delete");
 const favContainer = document.querySelector(".fav-container");
 
+
+let favs = JSON.parse(localStorage.getItem("favs")) || [];
+
+const saveLocalStorage = (favsList) => {
+  localStorage.setItem("favs", JSON.stringify(favsList));
+};
+
 const renderNews = async (noticia) => {
-    const { urlToImage , title , author , description , url } = await noticia;
+    const { publishedAt , urlToImage , title , author , description , url } = await noticia;
     return newsContainer.innerHTML += `
         <div class="each-news">
             <img src="${urlToImage}">
@@ -53,6 +61,7 @@ const renderNews = async (noticia) => {
             <p>${description}</p>
             <a class="btn-add-favs" href="${url}" target="__blank">Ir al enlace</a>
             <button class="btn-add-favs"
+                data-id='${publishedAt}'
                 data-titulo='${title}'
                 data-enlace='${url}'
                 data-img='${urlToImage}'>Añadir a favoritos</button>
@@ -61,11 +70,6 @@ const renderNews = async (noticia) => {
 
 const renderDividedNews = (listNews) => {
   listNews.map(renderNews).join("");
-};
-
-const changeFilterState = (e) => {
-  const selectedCategory = e.target.dataset.category;
-  changeBtnActiveState(selectedCategory);
 };
 
 const changeBtnActiveState = (selectedCategory) => {
@@ -85,34 +89,30 @@ const loadCoinsFilter = async () => {
   const marcketNewsConteiner = await genericFetch(marketParams);
   const brokerNewsConteiner = await genericFetch(brokersParams);
 
+  newsContainer.innerHTML = "";
+
   if(todosBtn.classList.contains('active')) {
-    renderDividedNews(allNewsConteiner);
+    return renderDividedNews(allNewsConteiner);
   } else if (cryptosBtn.classList.contains('active')) {
-    renderDividedNews(cryptoNewsConteiner);
+    return renderDividedNews(cryptoNewsConteiner);
   } else if (marketBtn.classList.contains('active')) {
-    renderDividedNews(marcketNewsConteiner);
+    return renderDividedNews(marcketNewsConteiner);
   } else if (brokerBtn.classList.contains('active')) {
-    renderDividedNews(brokerNewsConteiner);
+    return renderDividedNews(brokerNewsConteiner);
   }
 };
 
 // favoritos
 
-let favs = JSON.parse(localStorage.getItem("favs")) || [];
-
-const saveLocalStorage = (favsList) => {
-  localStorage.setItem("favs", JSON.stringify(favsList));
-};
-
-const renderFavNews = (favNews) => {
-	const { urlToImage , title , url } = favNews;
+const renderFavNews = (notice) => {
+	const { enlace , id , img , titulo } = notice;
 	return `
-		<div class="fav-item">
+		<div class="fav-item" id="${id}">
 			<div>
-				<img src="${urlToImage}" alt="Portada de la Noticia">
-				<h3>${title}</h3>
+				<img src="${img}" alt="Portada de la Noticia">
+				<h3>${titulo}</h3>
 			</div>
-			<a href="${url}" target="__blank">Ir al enlace</a>
+			<a href="${enlace}" target="__blank">Ir al enlace</a>
 		</div>
 	`;
 };
@@ -127,21 +127,27 @@ const renderFavs = () => {
 	favContainer.innerHTML = favs.map(renderFavNews).join("");
 };
 
-const createProductData = (urlToImage,title,url) => {
-	return { urlToImage , title , url };
+const createProductData = (enlace , id , img , titulo) => {
+	return { enlace , id , img , titulo };
 };
 
 const createFavNotice = (notice) => {
 	favs = [...favs, { ...notice, quantity: 1 }];
 };
 
-const isExistingCartProduct = (theNews) => {
-	return favs.find((item) => item.url === theNews.url);
-};
+const isExistingTheNews = (notice) => {
+  return favs.some((i)=> i.id === notice.id)
+}
 
 const checkFavsState = () => {
 	saveLocalStorage(favs);
 	renderFavs(favs);
+};
+
+const changeFilterState = (e) => {
+  const selectedCategory = e.target.dataset.category;
+  changeBtnActiveState(selectedCategory);
+  loadCoinsFilter()
 };
 
 const showSuccessModal = (msg) => {
@@ -153,20 +159,20 @@ const showSuccessModal = (msg) => {
 };
   
 const addNews = (e) => {
+  console.log(e.target.dataset)
 	if (!e.target.classList.contains("btn-add-favs")) return;
-	const { urlToImage , title , url } = e.target.dataset;
+	const { enlace , id , img , titulo } = e.target.dataset;
+
+	const noticia = createProductData(enlace , id , img , titulo);
   
-	const noticia = createProductData(urlToImage,title,url);
-	console.log(noticia)
-  
-	if (isExistingCartProduct(noticia)) {
+	if (isExistingTheNews(noticia)) {
 	  showSuccessModal("La noticia ya estaba en favoritos");
 	} else {
 	  createFavNotice(noticia);
 	  showSuccessModal("La noticia se agregó a favoritos");
 	}
 	checkFavsState();
-};
+}; 
 
 const resetFavsItems = () => {
 	favs = [];
